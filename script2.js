@@ -19,10 +19,10 @@ function game() {
   }
 
   if (userPoints > computerPoints) {
-    console.log("You win! " + userPoints + "-" + computerPoints)
+    alert("You win! " + userPoints + "-" + computerPoints)
   } else if (computerPoints > userPoints) {
-    console.log("Computer wins! " + computerPoints + "-" + userPoints)
-  } else {userPoints + "-" + computerPoints + " A draw!"}
+    alert("Computer wins! " + computerPoints + "-" + userPoints)
+  } else {alert(userPoints + "-" + computerPoints + " A draw!")}
 }
 
 game();
