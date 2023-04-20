@@ -8,24 +8,24 @@ function getComputerChoice() {
 var computerPoints = 0;
 var userPoints = 0;
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    let userInput = (prompt("Rock Paper or Scissors?", "")).toLowerCase();
-    const playerSelection = userInput;
-    const computerSelection = getComputerChoice();
-    alert(playRound(playerSelection, computerSelection));
-    console.log(userPoints);
-    console.log(computerPoints);
-  }
+// function game() {
+//   for (let i = 0; i < 5; i++) {
+//      let userInput = (prompt("Rock Paper or Scissors?", "")).toLowerCase();
+//   const playerSelection = userInput;
+//   const computerSelection = getComputerChoice();
+//   alert(playRound(playerSelection, computerSelection));
+//   console.log(userPoints);
+//   console.log(computerPoints);
+//   }
 
-  if (userPoints > computerPoints) {
-    alert("You win! " + userPoints + "-" + computerPoints)
-  } else if (computerPoints > userPoints) {
-    alert("Computer wins! " + computerPoints + "-" + userPoints)
-  } else {alert(userPoints + "-" + computerPoints + " A draw!")}
-}
+//   if (userPoints > computerPoints) {
+//     alert("You win! " + userPoints + "-" + computerPoints)
+//   } else if (computerPoints > userPoints) {
+//     alert("Computer wins! " + computerPoints + "-" + userPoints)
+//   } else {alert(userPoints + "-" + computerPoints + " A draw!")}
+// }
 
-game();
+// game();
 
 
 function playRound(playerSelection, computerSelection) {
@@ -60,3 +60,30 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+const resultText = document.querySelector('#resultText');
+const content = document.createElement('div');
+
+const points = document.querySelector('#points');
+const hyphen = document.querySelector('#hyphen')
+const playerScore = document.createElement('div');
+const computerScore = document.createElement('div');
+// content.classList.add('content');
+
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll('button');
+
+// we use the .forEach method to iterate through each button
+buttons.forEach((button) => {
+
+  // and for each one we add a 'click' listener
+  button.addEventListener('click', () => {
+    const playerSelection = button.id;
+    const computerSelection = getComputerChoice();
+    content.textContent = playRound(playerSelection, computerSelection);
+    resultText.appendChild(content);
+    playerScore.textContent = userPoints;
+    computerScore.textContent = computerPoints;
+    points.insertBefore(playerScore, hyphen);
+    points.appendChild(computerScore);
+  });
+});
