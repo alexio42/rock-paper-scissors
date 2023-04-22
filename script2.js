@@ -61,16 +61,16 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function endGame () {
-  if (userPoints === 5) {
+  if (userPoints === 5 || computerPoints === 5) {
     buttons.forEach((button) => {
       button.setAttribute('disabled', '')
     });
+    playAgain.style.visibility = 'visible';
+    if (userPoints === 5) {
     return "You win " + userPoints + " - " + computerPoints + "!";
-  } else if (computerPoints === 5){
-    buttons.forEach((button) => {
-      button.setAttribute('disabled', '')
-    });
-    return "You lose " + userPoints + " - " + computerPoints + "!";
+    } else {
+      return "You lose " + userPoints + " - " + computerPoints + "!";
+    }
   } else {
     return "";
   }
@@ -86,10 +86,12 @@ const computerScore = document.createElement('div');
 
 const endGameDiv = document.querySelector('#endGame');
 const endGameText = document.createElement('div');
+
+const playAgain = document.querySelector('#play-again');
 // content.classList.add('content');
 
 // buttons is a node list. It looks and acts much like an array.
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.button');
 
 // we use the .forEach method to iterate through each button
 buttons.forEach((button) => {
@@ -107,4 +109,8 @@ buttons.forEach((button) => {
     endGameText.textContent = endGame()
     endGameDiv.appendChild(endGameText);
   });
+});
+
+playAgain.addEventListener('click', () => {
+  window.location.reload();
 });
