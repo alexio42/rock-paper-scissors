@@ -60,6 +60,22 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function endGame () {
+  if (userPoints === 5) {
+    buttons.forEach((button) => {
+      button.setAttribute('disabled', '')
+    });
+    return "You win " + userPoints + " - " + computerPoints + "!";
+  } else if (computerPoints === 5){
+    buttons.forEach((button) => {
+      button.setAttribute('disabled', '')
+    });
+    return "You lose " + userPoints + " - " + computerPoints + "!";
+  } else {
+    return "";
+  }
+}
+
 const resultText = document.querySelector('#resultText');
 const content = document.createElement('div');
 
@@ -67,6 +83,9 @@ const points = document.querySelector('#points');
 const hyphen = document.querySelector('#hyphen')
 const playerScore = document.createElement('div');
 const computerScore = document.createElement('div');
+
+const endGameDiv = document.querySelector('#endGame');
+const endGameText = document.createElement('div');
 // content.classList.add('content');
 
 // buttons is a node list. It looks and acts much like an array.
@@ -85,5 +104,7 @@ buttons.forEach((button) => {
     computerScore.textContent = computerPoints;
     points.insertBefore(playerScore, hyphen);
     points.appendChild(computerScore);
+    endGameText.textContent = endGame()
+    endGameDiv.appendChild(endGameText);
   });
 });
